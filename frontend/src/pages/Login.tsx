@@ -52,10 +52,7 @@ const Login: React.FC = () => {
                         Login
                     </button>
                 </form>
-                <div className="mt-4 text-sm text-gray-600">
-                    <p>Demo credentials:</p>
-                    <p>admin@ipam.local / Admin123!</p>
-                </div>
+             
             </div>
         </div>
     );
