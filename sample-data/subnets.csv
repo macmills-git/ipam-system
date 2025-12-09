@@ -1,0 +1,6 @@
+cidr,description,location
+10.10.0.0/24,Development Network,Office Floor 1
+10.20.0.0/24,Production Network,Datacenter A
+10.30.0.0/24,Guest Network,Office Floor 2
+192.168.1.0/24,Management Network,Datacenter B
+2001:db8:1::/64,IPv6 Test Network,Lab

@@ -1,0 +1,7 @@
+address,subnet_id,status,hostname
+10.10.0.10,1,assigned,dev-server-01
+10.10.0.11,1,assigned,dev-server-02
+10.10.0.12,1,free,
+10.20.0.10,2,assigned,prod-web-01
+10.20.0.11,2,assigned,prod-db-01
+10.20.0.12,2,reserved,prod-backup

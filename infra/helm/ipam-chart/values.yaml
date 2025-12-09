@@ -1,0 +1,73 @@
+replicaCount: 2
+
+image:
+  backend:
+    repository: ipam-backend
+    tag: latest
+    pullPolicy: IfNotPresent
+  frontend:
+    repository: ipam-frontend
+    tag: latest
+    pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  backend:
+    port: 8000
+  frontend:
+    port: 3000
+
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  hosts:
+    - host: ipam.example.com
+      paths:
+        - path: /api
+          pathType: Prefix
+          backend: backend
+        - path: /
+          pathType: Prefix
+          backend: frontend
+  tls:
+    - secretName: ipam-tls
+      hosts:
+        - ipam.example.com
+
+database:
+  host: postgres
+  port: 5432
+  name: ipam
+  user: ipam
+  password: changeme
+
+redis:
+  host: redis
+  port: 6379
+
+resources:
+  backend:
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+    requests:
+      cpu: 500m
+      memory: 512Mi
+  frontend:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 250m
+      memory: 256Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
+
+secrets:
+  secretKey: change-this-secret-key-in-production
